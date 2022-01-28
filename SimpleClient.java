@@ -23,5 +23,53 @@ public class SimpleClient{
         dos.close();
         s1out.close();
         s1.close();
+
+        ServerSocket s = new ServerSocket(1234);
+        Socket s2 = s.accept();
+        InputStream s2In = s2.getInputStream();
+        DataInputStream d = new DataInputStream(s2In);
+        String a1 = new String(d.readUTF());
+        String a2 = new String(d.readUTF());
+        int i, k=0, flag = 0, len_1 = 0, len_2 = 0;
+        len_1 = a1.length();
+        len_2 = a2.length();
+        a1 = a1.toLowerCase();
+        a2 = a2.toLowerCase();
+        char[] ch_1 = a1.toCharArray();
+        char[] ch_2 = a2.toCharArray();
+        if(len_1<len_2)
+        {
+            flag = 2;
+        }
+        else
+        {
+            for (i = 0; i < len_1; i++) 
+            {
+                if (ch_1[i] == ch_2[k]) 
+                {
+                    k++;
+                    if (k == len_2) {
+                        flag = 1;
+                        break;
+                    }
+                }
+            }
+        }
+        
+        OutputStream s2out = s2.getOutputStream();
+        DataOutputStream v = new DataOutputStream(s2out);
+        if (flag == 1) {
+            System.out.println("These are Kangaroo words.");
+            v.writeUTF("These are Kangaroo words.");
+        } else if (flag == 2) {
+            System.out.println("Finding words character less than main words.");
+            v.writeUTF("Finding words character less than main words.");
+        } else {
+            System.out.println("These are not Kangaroo words.");
+            v.writeUTF("These are not Kangaroo words.");
+        }
+        d.close();
+        s2In.close();
+        s2.close();
     }
 }

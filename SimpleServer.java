@@ -51,5 +51,26 @@ public class SimpleServer {
         dis.close();
         s1In.close();
         s1.close();
+
+        Socket s2 = new Socket("192.168.1.7",1234);
+        OutputStream s2out = s2.getOutputStream();
+        DataOutputStream d = new DataOutputStream(s2out);
+        System.out.print("Input your word : ");
+        Scanner a1 = new Scanner(System.in);
+        String w_1 = a1.nextLine();
+        d.writeUTF(w_1);
+        d.flush();
+        System.out.print("What word do you want to find? : ");
+        Scanner a2 = new Scanner(System.in);
+        String w_2 = a2.nextLine();
+        d.writeUTF(w_2);
+        InputStream s2In = s2.getInputStream();
+        DataInputStream v = new DataInputStream(s2In);
+        String sen_1 = new String(v.readUTF());
+        System.out.print(sen_1);
+        // dis.readUTF(sen_1);
+        v.close();
+        s2out.close();
+        s2.close();
     }
 }
