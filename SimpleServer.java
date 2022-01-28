@@ -52,7 +52,7 @@ public class SimpleServer {
         s1In.close();
         s1.close();
 
-        Socket s2 = new Socket("192.168.1.7",1234);
+        Socket s2 = new Socket("localhost",1234);
         OutputStream s2out = s2.getOutputStream();
         DataOutputStream d = new DataOutputStream(s2out);
         System.out.print("Input your word : ");
