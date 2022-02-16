@@ -3,7 +3,7 @@ import java.io.*;
 import java.util.Scanner;
 public class SimpleClient{
     public static void main(String args[]) throws IOException{
-        Socket s1 = new Socket("172.30.32.1",1234);
+        Socket s1 = new Socket("172.20.112.1",1234);
         OutputStream s1out = s1.getOutputStream();
         DataOutputStream dos = new DataOutputStream(s1out);
         System.out.print("Input your word : ");
